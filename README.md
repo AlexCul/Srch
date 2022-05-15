@@ -10,9 +10,11 @@ With the following command:
 With the following command:
 
 ``` srch <search_engine_reduction> your question here ```
+
 **Note**: You can execute:
 
 ``` chmod +x add_alias && ./add_alias ```
+
 Then you can type just:
 
 ``` <search_engine_reduction> your question here ```
