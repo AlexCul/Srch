@@ -21,3 +21,4 @@ url="${search_engines[$1]}$vars"
 
 # Opening URL in your default web-browser
 xdg-open $url
+
