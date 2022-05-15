@@ -16,7 +16,8 @@ declare -A search_engines=(
 vars="${@:2}"
 # Replace spaces with pluses 
 vars="${vars// /+}"
-# Getting command
+# Getting URL
 url="${search_engines[$1]}$vars"
-echo $url
+
+# Opening URL in your default web-browser
 xdg-open $url
