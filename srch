@@ -1,0 +1,22 @@
+#!/bin/bash
+
+
+# Hash-table with available search engines(key is a reduction
+# and value is an URL for searching
+declare -A search_engines=( 
+	["bdu"]="https://www.baidu.com/s?wd="
+	["bg"]="https://www.bing.com/search?q="
+	["duck"]="https://www.duckduckgo.com/?q="
+	["g"]="https://www.google.com/search?q="
+	["yah"]="https://www.search.yahoo.com/search?p="
+	["yx"]="https://www.yandex.com/search/?text="
+)
+
+# All arguments gived to utilite (except of first) 
+vars="${@:2}"
+# Replace spaces with pluses 
+vars="${vars// /+}"
+# Getting command
+url="${search_engines[$1]}$vars"
+echo $url
+xdg-open $url
