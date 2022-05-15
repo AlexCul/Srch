@@ -1,0 +1,10 @@
+#!/bin/bash
+
+
+echo "
+alias bdu='srch bdu'
+alias bg='srch bg'
+alias duck='srch duck'
+alias g='srch g'
+alias yah='srch yah'
+alias yx='srch yx'" >> ~/.bashrc && exit
