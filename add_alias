@@ -7,4 +7,4 @@ alias bg='srch bg'
 alias duck='srch duck'
 alias g='srch g'
 alias yah='srch yah'
-alias yx='srch yx'" >> ~/.bashrc && exit
+alias yx='srch yx'" >> ~/.bashrc
