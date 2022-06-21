@@ -45,5 +45,3 @@ if __name__ == "__main__":
             query_link = funcs.create_query_link(key, encoded_url)
             webbrowser.open(query_link)
 
-
-
