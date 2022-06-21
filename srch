@@ -1,24 +1,49 @@
-#!/bin/bash
+#!/usr/bin/env python3
+from argparse import ArgumentParser
+from urllib.parse import quote
+import webbrowser
 
 
-# Hash-table with available search engines(key is a reduction
-# and value is an URL for searching
-declare -A search_engines=( 
-	["bdu"]="https://www.baidu.com/s?wd="
-	["bg"]="https://www.bing.com/search?q="
-	["duck"]="https://www.duckduckgo.com/?q="
-	["g"]="https://www.google.com/search?q="
-	["yah"]="https://www.search.yahoo.com/search?p="
-	["yx"]="https://www.yandex.com/search/?text="
-)
+search_engines = {
+    "bdu": "https://www.baidu.com/s?wd=",
+    "bg": "https://www.bing.com/search?q=",
+    "duck": "https://www.duckduckgo.com/?q=",
+    "g": "https://www.google.com/search?q=",
+    "yah": "https://www.search.yahoo.com/search?p=",
+    "yx": "https://www.yandex.com/search/?text="
+}
 
-# All arguments gived to utilite (except of first) 
-vars="${@:2}"
-# Replace spaces with pluses 
-vars="${vars// /+}"
-# Getting URL
-url="${search_engines[$1]}$vars"
+class Parser():
+    def __init__(self):
+        self.parser = ArgumentParser()
+        self.parser.add_argument(
+            '-l', '--link', action='store_true', default=False
+        )
+        self.args = self.parser.parse_known_args()
 
-# Opening URL in your default web-browser
-xdg-open $url
+class Functions():
+    def create_query_link(self, search_engine_reduction: str, encoded_query: str) -> str:
+        return f"{search_engines[search_engine_reduction]}{encoded_query}"
+
+    def url_encode(self, string: str) -> str:
+        return quote(string)
+
+
+if __name__ == "__main__":
+    parser, funcs = Parser(), Functions()
+    gived_args = parser.args[1]
+    are_args_links = parser.args[0].link
+
+    if are_args_links:
+        for link in gived_args:
+            webbrowser.open(link)
+
+    for key, value in search_engines.items():
+        if key in gived_args:
+            gived_args.remove(key)
+            encoded_url = funcs.url_encode(' '.join(gived_args))
+            query_link = funcs.create_query_link(key, encoded_url)
+            webbrowser.open(query_link)
+
+
 
