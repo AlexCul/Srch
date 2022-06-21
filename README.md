@@ -23,7 +23,7 @@ Then you can type just:
 
 ``` <search_engine_reduction> your question here ```
 
-``` -l websites.you.want ```
+``` link websites.you.want ```
 
 
 ## Available search engines:
