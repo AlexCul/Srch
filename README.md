@@ -11,6 +11,10 @@ With the following command:
 
 ``` srch <search_engine_reduction> your question here ```
 
+or if you want to open some website(s) you can use "-"/"--link" argument:
+
+``` srch --link youtube.com facebook.com etc. ```
+
 **Note**: You can execute:
 
 ``` chmod +x add_alias && ./add_alias ```
@@ -18,6 +22,8 @@ With the following command:
 Then you can type just:
 
 ``` <search_engine_reduction> your question here ```
+
+``` -l websites.you.want ```
 
 
 ## Available search engines:
