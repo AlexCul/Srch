@@ -39,7 +39,7 @@ if __name__ == "__main__":
         for link in gived_args:
             webbrowser.open(link)
 
-    for key, value in search_engines.items():
+    for key in search_engines.keys():
         if key in gived_args:
             gived_args.remove(key)
             encoded_url = funcs.url_encode(' '.join(gived_args))
