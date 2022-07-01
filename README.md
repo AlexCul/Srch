@@ -11,7 +11,7 @@ With the following command:
 
 ``` srch <search_engine_reduction> your question here ```
 
-or if you want to open some website(s) you can use "-"/"--link" argument:
+or if you want to open some website(s) you can use "-l"/"--link" argument:
 
 ``` srch --link youtube.com facebook.com etc. ```
 
@@ -23,7 +23,7 @@ Then you can type just:
 
 ``` <search_engine_reduction> your question here ```
 
-``` link websites.you.want ```
+``` link-open websites.you.want ```
 
 
 ## Available search engines:
