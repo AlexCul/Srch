@@ -1,5 +1,5 @@
 #!/bin/bash
 
 
-chmod +x srch && sudo cp srch /bin
+chmod +x srch && cp srch /bin
 
