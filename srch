@@ -1,10 +1,18 @@
 #!/usr/bin/env python3
 from argparse import ArgumentParser
+
+# For opening in web-browser
 from urllib.parse import quote
 import webbrowser
 
+# For JSON reading
+from json import load
 
-search_engines = {
+# For typing annotations
+from typing import Set, Dict, List, Union
+
+
+search_engines: Dict[str, str] = {
     "bdu": "https://www.baidu.com/s?wd=",
     "bg": "https://www.bing.com/search?q=",
     "duck": "https://www.duckduckgo.com/?q=",
@@ -13,38 +21,95 @@ search_engines = {
     "yx": "https://www.yandex.com/search/?text="
 }
 
+help_message = """
+Srch is a small utility to search for anything in several
+search engines. By default you can use:
+     - Baidu("srch bdu ...");
+     - Bing("srch bg ...");
+     - DuckDuckGo("srch duck ...");
+     - Google("srch g ...");
+     - Yahoo!("srch yah ...");
+     - Yandex("srch yx ...").
+For example this command:
+     $ srch g we will rock you
+will open google results for searching "We will rock you".
+But also you can just open a link directly:
+     $ srch --link youtube.com facebook.com
+     or
+     $ srch -l youtube.com facebook.com
+will open youtube.com and facebook.com in two your default
+browser's tabs.
+For full documentation pay attention to README file
+"""
+
+
 class Parser():
     def __init__(self):
-        self.parser = ArgumentParser()
+        self.parser = ArgumentParser(help_message)
         self.parser.add_argument(
             '-l', '--link', help="Opens a link(s) directly", 
             action='store_true', default=False
         )
-        self.args = self.parser.parse_known_args()
+        self.args: List[bool, str] = self.parser.parse_known_args()
 
 class Functions():
-    def create_query_link(self, search_engine_reduction: str, encoded_query: str) -> str:
-        return f"{search_engines[search_engine_reduction]}{encoded_query}"
+    def url_encode(self, query: str) -> str:
+        return quote(query)
 
-    def url_encode(self, string: str) -> str:
-        return quote(string)
+    def link_create(self, reduction: str, encoded_query: str) -> str:
+        return f"{search_engines[reduction]}{encoded_query}"
+
+    def json_read(self, filename: str) -> str:
+        return load(open(filename))
+
+    """
+    This function return query as a list with following 
+    content: [{'',''},''].
+    First part of the list(list[0]) contains a set of search engines
+    reductions the user has written. Second part(list[1]) contains 
+    a string. This string is a search query.
+    """
+    def query_create(self, query: str) -> List[Union[Set[str], str]]:
+        global search_engines
+        listed_query: List[str] = list(query)
+        returning_value: List[Union[Set[str], str]] = [set(), ""]
+        for word in listed_query:
+            if word in search_engines.keys():
+                returning_value[0].add(word)
+            else:
+                returning_value[1] += word
+        
+        return returning_value
+
+    def query_handle(self, query: List[Union[Set[str], str]]) -> None:
+        for reduction in query[0]:
+            webbrowser.open(self.link_create(
+                reduction,
+                self.url_encode(query[1])
+            ))
+
+    def links_open(self, links: List[str], config: str) -> None:
+        for link in links:
+            if link in config.keys():
+                webbrowser.open(config[link])
+            else:
+                webbrowser.open(link)
+
 
 
 if __name__ == "__main__":
     parser, funcs = Parser(), Functions()
-    gived_args = parser.args[1]
-    are_args_links = parser.args[0].link
 
-    if are_args_links:
-        for link in gived_args:
-            webbrowser.open(link)
+    # Default path to config file
+    config_file = "/etc/srch/favorite.json"
+    config = funcs.json_read(config_file)
 
-    for key in search_engines.keys():
-        if key in gived_args:
-            gived_args.remove(key)
-            encoded_url = funcs.url_encode(' '.join(gived_args))
-            query_link = funcs.create_query_link(key, encoded_url)
-            webbrowser.open(query_link)
+    gived_args: List[str] = parser.args[1]
+    args_are_links: bool = parser.args[0].link
+
+    if args_are_links is True: 
+        funcs.links_open(gived_args, config)
+    else:
+        funcs.query_handle(funcs.query_create(gived_args))
 
 
-            
