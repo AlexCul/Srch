@@ -77,7 +77,7 @@ class Functions():
             if word in search_engines.keys():
                 returning_value[0].add(word)
             else:
-                returning_value[1] += word
+                returning_value[1] += f"{word} "
         
         return returning_value
 
