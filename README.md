@@ -1,32 +1,46 @@
 # Srch
 Small utility for searching for anything in several search engines
 
-## Installation 
-With the following command:
+### Installation 
+With the following command you will get all of the files:
 
-``` git clone https://github.com/AlexCul/Srch.git && cd Srch && chmod +x install && ./install ```
+``` $ git clone https://github.com/AlexCul/Srch.git && cd Srch/ ```
 
-## Usage
-With the following command:
+Now for installation you have to execute this command as root user:
+
+``` # chmod +x install && ./install ```
+
+### Usage
+With the following command you can
 
 ``` srch <search_engine_reduction> your question here ```
 
-or if you want to open some website(s) you can use "-l"/"--link" argument:
+or if you want to open some website(s) directly you can use "-l"/"--link" argument:
 
 ``` srch --link youtube.com facebook.com etc. ```
 
-**Note**: You can execute:
+**Note no. 1**: If you have written your question and websites with "-l" argument it'll not work correct.
 
-``` chmod +x add_alias && ./add_alias ```
+So instead of this:
+
+``` $ srch g my question here -l yt ```
+
+use this:
+
+``` $ srch g my question && srch -l yt ```
+
+**Note no. 2**: You can execute:
+
+``` # chmod +x add_alias && ./add_alias ```
 
 Then you can type just:
 
-``` <search_engine_reduction> your question here ```
+``` $ <search_engine_reduction> your question here ```
 
-``` link-open websites.you.want ```
+``` $ link-open websites.you.want ```
 
 
-## Available search engines:
+### Available search engines:
 1. Baidu ("bdu")
 2. Bing ("bg")
 3. DuckDuckGo ("duck")
