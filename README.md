@@ -37,7 +37,7 @@ Then you can type just:
 
 ``` $ <search_engine_reduction> your question here ```
 
-``` $ link-open websites.you.want ```
+``` $ lo websites.you.want ```
 
 
 ### Available search engines:
