@@ -8,4 +8,5 @@ alias duck='srch duck'
 alias g='srch g'
 alias yah='srch yah'
 alias yx='srch yx'
-alias link-open='srch -l'" >> ~/.bashrc
+alias lo='srch -l'" >> ~/.bashrc
+echo "Now you can use just search engine's reduction or 'lo link.com' if you want to open a website"
