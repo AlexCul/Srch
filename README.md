@@ -23,11 +23,11 @@ or if you want to open some website(s) directly you can use "-l"/"--link" argume
 
 So instead of this:
 
-``` $ srch g my question here -l yt ```
+``` $ srch g my question here -l y ```
 
 use this:
 
-``` $ srch g my question && srch -l yt ```
+``` $ srch g my question && srch -l y ```
 
 **Note no. 2**: You can execute:
 
