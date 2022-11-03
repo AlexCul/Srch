@@ -107,7 +107,7 @@ if __name__ == "__main__":
     gived_args: List[str] = parser.args[1]
     args_are_links: bool = parser.args[0].link
 
-    if args_are_links is True: 
+    if args_are_links: 
         funcs.links_open(gived_args, config)
     else:
         funcs.query_handle(funcs.query_create(gived_args))
