@@ -6,12 +6,12 @@ do
 	read -p "Do you want to begin installation? [Y(es)/N(o)] " yes_or_no
 	case $yes_or_no in
 		[Yy]* ) chmod +x srch; cp srch /bin; mkdir /etc/srch; cp favorite.json /etc/srch/;;
-		[Nn]* ) exit;;
+		* ) exit;;
 	esac
 	read -p "Do you want to install Srch for root user? [Y(es)/N(o)] " root_yes_or_no
 	case $root_yes_or_no in
 		[Yy]* ) chmod +x srch; cp srch /sbin; break;;
-		[Nn]* ) exit;;
+		* ) exit;;
 	esac
 done
 
