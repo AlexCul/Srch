@@ -49,4 +49,4 @@ Then you can type just:
 4. Google ("g")
 5. Yahoo! ("yah")
 6. Yandex ("yx")
-7-Inf. Whatever you want to add!
+7. Whatever you want to add!
